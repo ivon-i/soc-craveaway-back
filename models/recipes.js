@@ -6,10 +6,10 @@ export async function getRecipes() {
 }
 
 export async function postRecipe(newRecipe) {
-    const { title, author, description, time, cost, ingredients, image, serves, rating, rating_entries } = newRecipe;
+    const { title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries } = newRecipe;
   const data = await query(
     `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
-    [title, author, description, time, cost, ingredients, image, serves, rating, rating_entries]
+    [title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries]
   );
   return data.rows;
 }
