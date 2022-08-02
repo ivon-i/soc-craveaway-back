@@ -1,16 +1,50 @@
-import { query } from "../db/index.js";
+import { query } from '../db/index.js';
 
 export async function getRecipes() {
   const data = await query(`SELECT * FROM recipes;`);
   return data.rows;
 }
+export async function getbyID(id) {
+  const data = await query(`SELECT * FROM recipes where recipe_id = $1;`, [id]);
+  return data.rows;
+}
 
 export async function postRecipe(newRecipe) {
-    const { title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries } = newRecipe;
+  const {
+    title,
+    author,
+    description,
+    time,
+    cost,
+    nutrition,
+    ingredients,
+    image,
+    serves,
+    rating,
+    rating_entries,
+  } = newRecipe;
   const data = await query(
     `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
-    [title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries]
+    [
+      title,
+      author,
+      description,
+      time,
+      cost,
+      nutrition,
+      ingredients,
+      image,
+      serves,
+      rating,
+      rating_entries,
+    ]
   );
+  return data.rows;
+}
+
+export async function getBySearch(input) {
+  const data = await query(`SELECT * FROM recipes
+  WHERE title LIKE '${input}%' or author LIKE '${input}%' or description LIKE '${input}%' or nutrition LIKE '${input}%' or ingredients LIKE '${input}%';`);
   return data.rows;
 }
 
