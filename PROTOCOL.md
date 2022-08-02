@@ -48,10 +48,8 @@ Two tables for database: 'users' and 'recipes'
                 - `populate.js`
                 - `truncate.js`
     - `libs `
-        - `users`
-            - `data.js` *(Sample data)*
-        - `recipes`
-            - `data.js` *(Sample data)*
+        - `data.js` *(Sample data)*
+        - `recipesData.js` *(Sample data)*
     - `models` *(Functionality of requests)*
         - `users.js`
         - `recipes.js`
