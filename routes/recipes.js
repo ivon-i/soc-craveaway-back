@@ -8,7 +8,8 @@ import {
   postRecipe,
   getbyID,
   getBySearch,
-  //   deleteTicket,
+  createNewRecipe,
+  updateRating,
 } from '../models/recipes.js';
 
 recRouter.post(
@@ -45,39 +46,36 @@ recRouter.get('/', async (req, res) => {
   }
 });
 
-recRouter.post("/create", async (req, res) => {
-  const author = req.body.author;
-  const title= req.body.title;
-  const description = req.body.description;
-  const cost = req.body.cost;
-  const time = req.body.time;
-  const nutrition= req.body.nutrition;
-  const ingredients = req.body.ingredients;
-  const image = req.body.image;
-  const serves = req.body.serves;
-  const rating = req.body.rating;
-  const rating_entries = req.body.rating_entries;
-  if (!author || !title || !description || !cost || !time || !nutrition || !ingredients || !serves || !rating || !rating_entries) {
-    res.json({ sucess: false, reason: "incorrect data input" });
+recRouter.post('/create', async (req, res) => {
+  const newRecipe = req.body;
+  if (
+    !newRecipe.author ||
+    !newRecipe.title ||
+    !newRecipe.description ||
+    !newRecipe.cost ||
+    !newRecipe.time ||
+    !newRecipe.nutrition ||
+    !newRecipe.ingredients ||
+    !newRecipe.serves
+  ) {
+    res.json({ sucess: false, reason: 'incorrect data input' });
   } else {
-    const result = await createNewRecipe(author, title, description, cost, time, nutrition, ingredients, serves, rating, rating_entries);
+    const result = await createNewRecipe(newRecipe);
     res.json({ success: true, data: result });
   }
 });
 
-
+recRouter.patch('/:id', async function (req, res) {
+  const id = Number(req.params.id);
+  const data = req.body;
+  const result = await updateRating(id, data);
+  res.json({ success: true, payload: result });
+});
 
 // router.put("/:id", async function (req, res) {
 //   const id = Number(req.params.id);
 //   const data = req.body;
 //   const result = await updateTicket(id, data);
-//   res.json({ success: true, payload: result });
-// });
-
-// router.patch("/:id", async function (req, res) {
-//   const id = Number(req.params.id);
-//   const data = req.body;
-//   const result = await updateStatus(id, data);
 //   res.json({ success: true, payload: result });
 // });
 

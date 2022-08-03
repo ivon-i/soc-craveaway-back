@@ -23,6 +23,7 @@ export async function postRecipe(newRecipe) {
     rating,
     rating_entries,
   } = newRecipe;
+
   const data = await query(
     `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
     [
@@ -35,8 +36,8 @@ export async function postRecipe(newRecipe) {
       ingredients,
       image,
       serves,
-      rating,
-      rating_entries,
+      0,
+      0,
     ]
   );
   return data.rows;
@@ -74,9 +75,18 @@ export async function createNewRecipe(newRecipe) {
       ingredients,
       image,
       serves,
-      rating,
-      rating_entries,
+      0,
+      0,
     ]
+  );
+  return data.rows;
+}
+
+export async function updateRating(id, updated) {
+  const { rating } = updated;
+  const data = await query(
+    `UPDATE recipes SET rating = $1 , rating_entries = rating_entries + 1 WHERE recipe_id = $2 RETURNING *;`,
+    [rating, id]
   );
   return data.rows;
 }
@@ -86,15 +96,6 @@ export async function createNewRecipe(newRecipe) {
 //   const data = await query(
 //     `UPDATE tickets SET name = $1, roomnumber = $2, message = $3, keywords = $4, status = $5 WHERE  ticket_id = $6 RETURNING *;`,
 //     [name, roomnumber, message, keywords, status, Number(id)]
-//   );
-//   return data.rows;
-// }
-
-// export async function updateStatus(id, updatedStatus) {
-//   const { status } = updatedStatus;
-//   const data = await query(
-//     `UPDATE tickets SET status = $1 WHERE ticket_id = $2 RETURNING *;`,
-//     [status, Number(id)]
 //   );
 //   return data.rows;
 // }
