@@ -10,6 +10,7 @@ import {
   getBySearch,
   createNewRecipe,
   updateRating,
+  calculateAvg
 } from '../models/recipes.js';
 
 recRouter.post(
@@ -40,7 +41,8 @@ recRouter.get('/', async (req, res) => {
       return;
     }
     let result = await getRecipes();
-    res.json({ success: true, payload: result });
+    let rating = await calculateAvg();
+    res.json({ success: true, payload: result, average: rating});
   } catch (error) {
     console.error(error.message);
   }

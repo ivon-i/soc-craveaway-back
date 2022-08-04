@@ -1,3 +1,4 @@
+import { DataRowMessage } from 'pg-protocol/dist/messages.js';
 import { query } from '../db/index.js';
 
 export async function getRecipes() {
@@ -90,6 +91,12 @@ export async function updateRating(id, updated) {
   );
   return data.rows;
 }
+
+export async function calculateAvg() {
+  const data = await query(`SELECT AVG(ALL rating) FROM recipes`);
+  return data.rows;
+}
+
 
 // export async function updateTicket(id, updatedTicket) {
 //   const { name, roomnumber, message, keywords, status } = updatedTicket;
