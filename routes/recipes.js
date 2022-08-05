@@ -1,6 +1,8 @@
 import express, { query } from 'express';
 // import bodyParser from "body-parser";
 const recRouter = express.Router();
+
+import { getFav, postFavRecipe } from '../models/users.js';
 // const jsonParser = bodyParser.json();
 
 import {
@@ -10,7 +12,7 @@ import {
   getBySearch,
   createNewRecipe,
   updateRating,
-  calculateAvg
+  calculateAvg,
 } from '../models/recipes.js';
 
 recRouter.post(
@@ -42,7 +44,7 @@ recRouter.get('/', async (req, res) => {
     }
     let result = await getRecipes();
     let rating = await calculateAvg();
-    res.json({ success: true, payload: result, average: rating});
+    res.json({ success: true, payload: result, average: rating });
   } catch (error) {
     console.error(error.message);
   }
