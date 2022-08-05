@@ -1,9 +1,9 @@
-import express, { query } from 'express';
+import express from 'express';
 const favRouter = express.Router();
 
 import { getFav, postFavRecipe } from '../models/users.js';
 
-favRouter.get('/fav', async (req, res) => {
+favRouter.get('/', async (req, res) => {
   try {
     let result = await getFav();
     res.json({ success: true, payload: result });
@@ -12,8 +12,10 @@ favRouter.get('/fav', async (req, res) => {
   }
 });
 
-favRouter.post('/fav', async function (req, res) {
+favRouter.post('/create', async function (req, res) {
   const newRecipe = req.body;
   const result = await postFavRecipe(newRecipe);
   res.json({ success: true, payload: result });
 });
+
+export default favRouter;

@@ -1,7 +1,8 @@
-import express from "express";
+import express from 'express';
 // import bodyParser from "body-parser";
-import recRouter from "./routes/recipes.js";
-import cors from "cors";
+import recRouter from './routes/recipes.js';
+import favRouter from './routes/users.js';
+import cors from 'cors';
 
 const PORT = process.env.PORT || 3001;
 
@@ -13,12 +14,11 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
-app.use("/recipes", recRouter);
+app.use('/recipes', recRouter);
+app.use('/fav', favRouter);
 
 app.use(function (req, res, next) {
-  res
-    .status(404)
-    .json({ message: "Couldn't find that for ya matey" });
+  res.status(404).json({ message: "Couldn't find that for ya matey" });
 });
 
 app.use(function (err, req, res, next) {

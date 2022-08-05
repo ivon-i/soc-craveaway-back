@@ -3,5 +3,5 @@ export const db = {
 };
 
 export const db2 = {
-  DATABASE_URL: process.env.FAV_URL,
+  FAV_URL: process.env.FAV_URL,
 };
