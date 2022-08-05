@@ -1,7 +1,7 @@
-import { query2 } from '../db/index.js';
+import { query } from '../db/index.js';
 
 export async function getFav() {
-  const data = await query2(`SELECT * FROM favourites;`);
+  const data = await query(`SELECT * FROM favourites;`);
   return data.rows;
 }
 
@@ -22,7 +22,7 @@ export async function postFavRecipe(newRecipe) {
     userName,
   } = newRecipe;
 
-  const data = await query2(
+  const data = await query(
     `INSERT INTO favourites (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, shoppingList, userName) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
     [
       title,
