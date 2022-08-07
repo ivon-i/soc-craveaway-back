@@ -1,10 +1,9 @@
 import express from 'express';
 // import recRouter from './routes/recipes.js';
 // import favRouter from './routes/users.js';
-// import imageRouter from './routes/images.js'
+import imageRouter from './routes/cloudinary.js'
 import cors from 'cors';
 import bodyParser from 'body-parser';
-// import cloudinary from './cloudinary.js';
 import { v2 as cloudinary } from 'cloudinary';
 
 const PORT = process.env.PORT || 3001;
@@ -14,14 +13,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }))
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }))
 
 // app.use('/recipes', recRouter);
 // app.use('/fav', favRouter);
-// app.use('/api/images', function (req, res, next) {
-//   res.json({ message: "Hi" });
-// });
+app.use('/images', imageRouter);
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -29,66 +26,61 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hey! This is your server response!' });
-});
-
-app.post('/image-upload', (request, response) => {
-  // collected image from a user
-  const data = {
-    image: request.body.image,
-  };
-
-  // upload image here
-  cloudinary.uploader
-    .upload(data.image)
-    .then((result) => {
-      response.status(200).send({
-        message: 'success',
-        result,
-      });
-    })
-    .catch((error) => {
-      response.status(500).send({
-        message: 'failure',
-        error,
-      });
-    });
-});
-
-// app.get('/api/cloudinary', async (req, res) => {
-//   const { resources } = await cloudinary.search
-//     .expression('folder:dev_setups')
-//     .sort_by('public_id', 'desc')
-//     .max_results(30)
-//     .execute();
-
-//   const publicIds = resources.map((file) => file.public_id);
-//   res.send(publicIds);
-// });
-
-
-// app.post('/api/images', async (req, res) => {
-//   try {
-//     const imageStr = req.body.data;
-//     console.log(imageStr)
-//   const uploadedResponse = await cloudinary.uploader.upload(imageStr, {
-//     upload_preset: 'ml_default',
-//   });
-//     res.json({data: uploadedResponse})
-//   } catch (error){
-//     console.error(error)
+// FOR POST TO DATABASE ATTEMPT 
+// app.post("/persist-image", (request, response) => {
+//   // collected image from a user
+//   const data = {
+//     title: request.body.title,
+//     image: request.body.image
 //   }
-// })
 
-// app.use(function (req, res, next) {
-//   res.status(404).json({ message: "Couldn't find that for ya matey" });
+//   // upload image here
+//   cloudinary.uploader.upload(data.image)
+//   .then((image) => {
+//     db.pool.connect((err, client) => {
+//       // inset query to run if the upload to cloudinary is successful
+//       const insertQuery = `INSERT INTO images (title, cloudinary_id, image_url) VALUES($1,$2,$3) RETURNING *`;
+//       const values = [data.title, image.public_id, image.secure_url];
+
+//       // execute query
+//       client.query(insertQuery, values)
+//       .then((result) => {
+//         result = result.rows[0];
+
+//         // send success response
+//         response.status(201).send({
+//           status: "success",
+//           data: {
+//             message: "Image Uploaded Successfully",
+//             title: result.title,
+//             cloudinary_id: result.cloudinary_id,
+//             image_url: result.image_url,
+//           },
+//         })
+//       }).catch((e) => {
+//         response.status(500).send({
+//           message: "failure",
+//           e,
+//         });
+//       })
+//     })  
+//   }).catch((error) => {
+//     response.status(500).send({
+//       message: "failure",
+//       error,
+//     });
+//   });
 // });
 
-// app.use(function (err, req, res, next) {
-//   console.error(err.stack);
-//   res.status(500).json(err);
-// });
+
+app.use(function (req, res, next) {
+  res.status(404).json({ message: "Couldn't find that for ya matey" });
+});
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).json(err);
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
