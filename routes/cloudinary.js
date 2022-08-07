@@ -1,7 +1,7 @@
 import express, { query } from 'express';
-import bodyParser from "body-parser";
+import bodyParser from 'body-parser';
 import { v2 as cloudinary } from 'cloudinary';
-import { postImage, getImage } from '../models/cloudinary.js'
+import { postImage, getImage } from '../models/cloudinary.js';
 
 const imageRouter = express.Router();
 
@@ -15,38 +15,33 @@ imageRouter.get('/', (req, res) => {
   res.json({ message: 'Hey! This is your server response!' });
 });
 
-
-
-imageRouter.post('/post', async (req, res) => {
-    try {
-        const data = {
-            title: 'hi',
-            image: req.body.data,
-        };
-        const uploadedResponse = await cloudinary.uploader.upload_large(
-          data.image
-        );
-        const result = await postImage(data.title, uploadedResponse)
-        res.json({ success: true, payload: result })
-    } catch (error) {
-        console.error(error.message);
-    }
+imageRouter.post('/retrieve-image', async (req, res) => {
+  try {
+    const data = {
+      title: req.body.title,
+      image: req.body.image,
+    };
+    // const data = req.body;
+    const uploadedResponse = await cloudinary.uploader.upload(data.image);
+    const result = await postImage(data.title, uploadedResponse);
+    res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error.message);
+  }
 });
 
 imageRouter.get('/retrieve-image/:cloudinary_id', async (req, res) => {
-    // data from user
-    try {
-        const { cloudinary_id } = req.params;
-        const result = await getImage(cloudinary_id)
-        res.json({ success: true, payload: result })
-    } catch (error) {
-        console.error(error.message)
-    }
+  // data from user
+  try {
+    const { cloudinary_id } = req.params;
+    const result = await getImage(cloudinary_id);
+    res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error.message);
+  }
 });
 
- 
-
-// YOUTUBE MAN SHIT 
+// YOUTUBE MAN SHIT
 
 // app.get('/api/cloudinary', async (req, res) => {
 //   const { resources } = await cloudinary.search
@@ -58,7 +53,6 @@ imageRouter.get('/retrieve-image/:cloudinary_id', async (req, res) => {
 //   const publicIds = resources.map((file) => file.public_id);
 //   res.send(publicIds);
 // });
-
 
 // app.post('/api/images', async (req, res) => {
 //   try {
