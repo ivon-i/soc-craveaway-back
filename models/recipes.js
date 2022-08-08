@@ -1,5 +1,12 @@
 // import { DataRowMessage } from 'pg-protocol/dist/messages.js';
+import { v2 as cloudinary } from 'cloudinary';
 import { query } from '../db/index.js';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 export async function getRecipes() {
   const data = await query(`SELECT * FROM recipes;`);
@@ -21,12 +28,12 @@ export async function postRecipe(newRecipe) {
     ingredients,
     image,
     serves,
-    rating,
-    rating_entries,
+    cloudinary_id,
+    image_url,
   } = newRecipe;
 
   const data = await query(
-    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
+    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, cloudinary_id, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
     [
       title,
       author,
@@ -50,7 +57,17 @@ export async function getBySearch(input) {
   return data.rows;
 }
 
-export async function createNewRecipe(newRecipe) {
+//IMAGE
+// export async function postImage(imageData) {
+// const data = await query(
+//   `INSERT INTO pictures (title, cloudinary_id, image_url) VALUES($1,$2,$3) RETURNING *;`,
+//   [imageData.public_id, imageData.secure_url]
+// );
+//     return data.rows;
+// };
+
+
+export async function createNewRecipe(newRecipe, imageData) {
   const {
     title,
     author,
@@ -61,11 +78,9 @@ export async function createNewRecipe(newRecipe) {
     ingredients,
     image,
     serves,
-    rating,
-    rating_entries,
   } = newRecipe;
   const data = await query(
-    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
+    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, cloudinary_id, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
     [
       title,
       author,
@@ -78,6 +93,8 @@ export async function createNewRecipe(newRecipe) {
       serves,
       0,
       0,
+      imageData.public_id,
+      imageData.secure_url,
     ]
   );
   return data.rows;

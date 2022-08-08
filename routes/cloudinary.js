@@ -17,20 +17,17 @@ imageRouter.get('/', (req, res) => {
 
 
 
-imageRouter.post('/post', async (req, res) => {
-    try {
-        const data = {
-            title: 'hi',
-            image: req.body.data,
-        };
-        const uploadedResponse = await cloudinary.uploader.upload_large(
-          data.image
-        );
-        const result = await postImage(data.title, uploadedResponse)
-        res.json({ success: true, payload: result })
-    } catch (error) {
-        console.error(error.message);
-    }
+imageRouter.post('/retrieve-image', async (req, res) => {
+  try {
+    const data = {
+      image: req.body.data,
+    };
+    const uploadedResponse = await cloudinary.uploader.upload(data.image);
+    const result = await postImage(data.title, uploadedResponse);
+    res.json({ success: true, payload: result });
+  } catch (error) {
+    console.error(error.message);
+  }
 });
 
 imageRouter.get('/retrieve-image/:cloudinary_id', async (req, res) => {
