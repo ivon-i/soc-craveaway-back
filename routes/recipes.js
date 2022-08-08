@@ -1,6 +1,7 @@
 import express, { query } from 'express';
 // import bodyParser from "body-parser";
 const recRouter = express.Router();
+import { v2 as cloudinary } from 'cloudinary';
 
 import { getFav, postFavRecipe } from '../models/users.js';
 // const jsonParser = bodyParser.json();
@@ -14,6 +15,12 @@ import {
   updateRating,
   calculateAvg,
 } from '../models/recipes.js';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 recRouter.post(
   '/',
@@ -50,6 +57,21 @@ recRouter.get('/', async (req, res) => {
   }
 });
 
+//IMAGE
+// imageRouter.post('/retrieve-image', async (req, res) => {
+//   try {
+//     const data = {
+//       image: req.body.data,
+//     };
+//     const uploadedResponse = await cloudinary.uploader.upload(data.image);
+//     const result = await postImage(uploadedResponse);
+//     res.json({ success: true, payload: result });
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+
 recRouter.post('/create', async (req, res) => {
   const newRecipe = req.body;
   if (
@@ -60,11 +82,13 @@ recRouter.post('/create', async (req, res) => {
     !newRecipe.time ||
     !newRecipe.nutrition ||
     !newRecipe.ingredients ||
-    !newRecipe.serves
+    !newRecipe.serves ||
+    !newRecipe.imagestring
   ) {
     res.json({ sucess: false, reason: 'incorrect data input' });
   } else {
-    const result = await createNewRecipe(newRecipe);
+    const imageData = await cloudinary.uploader.upload(newRecipe.imagestring);
+    const result = await createNewRecipe(newRecipe, imageData);
     res.json({ success: true, data: result });
   }
 });
@@ -90,3 +114,16 @@ recRouter.patch('/:id', async function (req, res) {
 // });
 
 export default recRouter;
+
+
+// CLOUDINARY GET 
+// imageRouter.get('/retrieve-image/:cloudinary_id', async (req, res) => {
+//   // data from user
+//   try {
+//     const { cloudinary_id } = req.params;
+//     const result = await getImage(cloudinary_id);
+//     res.json({ success: true, payload: result });
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
