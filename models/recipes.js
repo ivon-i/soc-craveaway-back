@@ -132,3 +132,11 @@ export async function calculateAvg() {
 //   );
 //   return data.rows;
 // }
+
+// CLOUDINARY GET
+// export async function getImage(cloudinary_id) {
+//   const data = await query(`SELECT * FROM pictures WHERE cloudinary_id = $1;`, [
+//     cloudinary_id,
+//   ]);
+//   return data.rows;
+// }

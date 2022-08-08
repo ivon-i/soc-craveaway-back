@@ -114,3 +114,16 @@ recRouter.patch('/:id', async function (req, res) {
 // });
 
 export default recRouter;
+
+
+// CLOUDINARY GET 
+// imageRouter.get('/retrieve-image/:cloudinary_id', async (req, res) => {
+//   // data from user
+//   try {
+//     const { cloudinary_id } = req.params;
+//     const result = await getImage(cloudinary_id);
+//     res.json({ success: true, payload: result });
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });

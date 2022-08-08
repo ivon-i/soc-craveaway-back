@@ -13,9 +13,7 @@
     "drop": "node -r dotenv/config ./db/scripts/recipes/drop.js",
     "createFav": "node -r dotenv/config ./db/scripts/users/create.js",
     "populateFav": "node -r dotenv/config ./db/scripts/users/populate.js",
-    "dropFav": "node -r dotenv/config ./db/scripts/users/drop.js",
-    "createpics": "node -r dotenv/config ./db/scripts/cloudinary/create.js",
-    "droppics": "node -r dotenv/config ./db/scripts/cloudinary/drop.js"
+    "dropFav": "node -r dotenv/config ./db/scripts/users/drop.js"
   },
   "repository": {
     "type": "git",
