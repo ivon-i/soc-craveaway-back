@@ -4,7 +4,7 @@ import { data } from "../../../libs/recipeData.js";
 async function populateRecipesTable() {
   for (let i = 0; i < data.length; i++) {
     const res = await query(
-      `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`,
+      `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
       [data[i].title,
       data[i].author, 
       data[i].description, 
