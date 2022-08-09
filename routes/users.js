@@ -18,7 +18,7 @@ favRouter.post('/create', async function (req, res) {
   res.json({ success: true, payload: result });
 });
 
-router.delete('/:id', async function (req, res) {
+favRouter.delete('/:id', async function (req, res) {
   const id = Number(req.params.id);
   const result = await deleteFav(id);
   res.json({ success: true, payload: result });

@@ -1,13 +1,12 @@
 import { query } from '../db/index.js';
 
-export async function getShop() {
-  const data = await query(`SELECT * FROM shopping;`);
+export async function getShop(name) {
+  const data = await query(`SELECT * FROM shopping WHERE username = $1;`, [name]);
   return data.rows;
 }
 
 export async function postShopItem(newItem) {
   const { username, item } = newItem;
-
   const data = await query(
     `INSERT INTO shopping (username, item) VALUES ($1, $2) RETURNING *;`,
     [username, item]
