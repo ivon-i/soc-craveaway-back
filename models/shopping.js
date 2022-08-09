@@ -16,7 +16,7 @@ export async function postShopItem(newItem) {
 
 export async function deleteShop(id) {
     const data = await query(
-      `DELETE FROM shopping WHERE recipe_id = $1 RETURNING *`,
+      `DELETE FROM shopping WHERE item_id = $1 RETURNING *`,
       [Number(id)]
     );
     return data.rows;
