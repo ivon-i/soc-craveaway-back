@@ -13,7 +13,9 @@
     "drop": "node -r dotenv/config ./db/scripts/recipes/drop.js",
     "createFav": "node -r dotenv/config ./db/scripts/users/create.js",
     "populateFav": "node -r dotenv/config ./db/scripts/users/populate.js",
-    "dropFav": "node -r dotenv/config ./db/scripts/users/drop.js"
+    "dropFav": "node -r dotenv/config ./db/scripts/users/drop.js",
+    "createShop": "node -r dotenv/config ./db/scripts/shopping/create.js",
+    "dropShop": "node -r dotenv/config ./db/scripts/shopping/drop.js"
   },
   "repository": {
     "type": "git",
