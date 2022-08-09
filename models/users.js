@@ -45,7 +45,6 @@ export async function postFavRecipe(newRecipe) {
 
 
 export async function deleteFav(id) {
-  console.log('delete');
   const data = await query(
     `DELETE FROM favourites WHERE recipe_id = $1 RETURNING *`,
     [Number(id)]
