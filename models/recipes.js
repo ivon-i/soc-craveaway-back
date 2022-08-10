@@ -20,39 +20,6 @@ export async function getbyID(id) {
   return data.rows;
 }
 
-// export async function postRecipe(newRecipe) {
-//   const {
-//     title,
-//     author,
-//     description,
-//     time,
-//     cost,
-//     nutrition,
-//     ingredients,
-//     image,
-//     serves,
-//     cloudinary_id,
-//     image_url,
-//   } = newRecipe;
-
-//   const data = await query(
-//     `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, cloudinary_id, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
-//     [
-//       title,
-//       author,
-//       description,
-//       time,
-//       cost,
-//       nutrition,
-//       ingredients,
-//       image,
-//       serves,
-//       0,
-//       0,
-//     ]
-//   );
-//   return data.rows;
-// }
 //getting all recipes based on search input
 export async function getBySearch(input) {
   const data = await query(`SELECT * FROM recipes
