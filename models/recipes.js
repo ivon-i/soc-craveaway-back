@@ -102,7 +102,7 @@ export async function updateRating(id, updated) {
   );
   return data.rows;
 }
-
+//currently calculates average of all ratings in db
 export async function calculateAvg() {
   const data = await query(`SELECT AVG(ALL rating) FROM recipes`);
   return data.rows;
