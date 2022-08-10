@@ -8,11 +8,13 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
+//getting all recipes 
 export async function getRecipes() {
   const data = await query(`SELECT * FROM recipes;`);
   return data.rows;
 }
 
+//getting all recipes based on id
 export async function getbyID(id) {
   const data = await query(`SELECT * FROM recipes where recipe_id = $1;`, [id]);
   return data.rows;
@@ -51,13 +53,14 @@ export async function getbyID(id) {
 //   );
 //   return data.rows;
 // }
-
+//getting all recipes based on search input
 export async function getBySearch(input) {
   const data = await query(`SELECT * FROM recipes
   WHERE title LIKE '${input}%' or author LIKE '${input}%' or description LIKE '${input}%' or nutrition LIKE '${input}%' or ingredients LIKE '${input}%';`);
   return data.rows;
 }
 
+//creating a new recipe via form 
 export async function createNewRecipe(newRecipe, imageData) {
   const {
     title,
