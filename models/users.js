@@ -33,7 +33,7 @@ export async function postFavRecipe(newRecipe) {
   ]);
  let favs;
   if (data.rows.length > 0) {
-  favs = data.rows;
+  favs = true;
   console.log("not posted")
   } else {
    const newFav = await query( `INSERT INTO favourites (recipe_id, title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, shoppingList, userName) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;`,
