@@ -5,8 +5,12 @@ import { getFav, postFavRecipe, deleteFav } from '../models/users.js';
 
 favRouter.get('/', async (req, res) => {
   try {
-    let result = await getFav();
-    res.json({ success: true, payload: result });
+    if (req.query.userName !== undefined) {
+      const name = req.query.userName;
+      let result = await getFav(name);
+      res.json({ success: true, payload: result });
+      return;
+    }
   } catch (error) {
     console.error(error.message);
   }

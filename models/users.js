@@ -1,10 +1,13 @@
 import { query } from '../db/index.js';
 
-export async function getFav() {
-  const data = await query(`SELECT * FROM favourites;`);
+
+//getting all favourited recipes based on username
+export async function getFav(name) {
+  const data = await query(`SELECT * FROM favourites WHERE userName = $1;`, [name]);
   return data.rows;
 }
 
+//posting favourited recipe into Fav table
 export async function postFavRecipe(newRecipe) {
   const {
     recipe_id,
@@ -55,26 +58,8 @@ export async function postFavRecipe(newRecipe) {
   return favs;
 }
 
-//   `INSERT INTO favourites (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, shoppingList, userName) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
-//   [
-//     title,
-//     author,
-//     description,
-//     time,
-//     cost,
-//     nutrition,
-//     ingredients,
-//     image,
-//     serves,
-//     0,
-//     0,
-//     shoppingList,
-//     userName,
-//   ]
-// );
-// return data.rows;
 
-// IF NOT EXISTS (SELECT * FROM recipes where title = x ) BEGING INSERT INTO .... END ELSE BEING ... END
+//deleting a single recipes off users'favourites
 
 export async function deleteFav(id) {
   const data = await query(

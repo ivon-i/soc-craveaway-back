@@ -23,3 +23,4 @@ export async function deleteShop(id) {
     return data.rows;
   };
   
+//deleting a single item off users' list 
