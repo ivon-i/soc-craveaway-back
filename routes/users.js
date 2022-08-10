@@ -19,6 +19,7 @@ favRouter.get('/', async (req, res) => {
 favRouter.post('/create', async function (req, res) {
   const newRecipe = req.body;
   const result = await postFavRecipe(newRecipe);
+  console.log(result);
   res.json({ success: true, payload: result });
 });
 
