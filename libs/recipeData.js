@@ -51,7 +51,7 @@ export const data = [
   },
 
   {
-    title: 'Buffalo Chicken Wings with Ranchy Cauliflower',
+    title: 'Buffalo Chicken Wings',
     author: 'Ben Locke',
     description: 'These crispy baked buffalo chicken wings are perfectly crispy, without any traditional frying, Paleo friendly, and naturally gluten free. Just a few simple ingredients are all you need to whip up a batch! In a large bowl combine chicken, 2 tbsp hot sauce, vinegar, oregano, paprika, garlic powder, chili powder salt and pepper. Mix well and let marinate for 30 minutes. Place wings on a broiler rack and broil on low, about 8 inches from the flame for about 10-12 minutes on each side. (All ovens are different so be careful not to burn and make sure it is cooked before removing) While chicken cooks, heat the remaining hot sauce until warm. Toss the hot sauce with the chicken and arrange on a platter. Serve with celery and carrot strips and blue cheese dressing or dipping.',
     time: '10-20 mins',
@@ -84,7 +84,7 @@ export const data = [
       'https://res.cloudinary.com/dghgcknlo/image/upload/v1660050213/thomas-tucker-MNtag_eXMKw-unsplash_f9bdsg.jpg',
   },
   {
-    title: 'Cinnamon-Sugar Dusted Donuts',
+    title: 'Cinnamon Donuts',
     author: 'Leon Moule',
     description: 'First, prepare the donuts: Preheat oven to 350 degrees F. Spray one (12-count) donut pan or two (6-count) donut pans with cooking spray; set aside. Bring cider to a boil in a small saucepan over high; boil, whisking constantly, 1 minute. Reduce heat to medium; simmer until cider reduces to 1/2 cup, 15 to 20 minutes. Set aside to cool at least 30 minutes or up to 1 hour. Next, Whisk together flour, cinnamon, baking powder, baking soda, salt and nutmeg in a large bowl until combined. Whisk together buttermilk, granulated sugar, brown sugar and egg in a 4-cup measuring cup (or a small bowl) until combined; stir in butter, vanilla and cooled cider reduction. Pour buttermilk mixture into flour mixture; stir until combined (but do not overmix). Then, spoon donut batter into a piping bag (or zip-top plastic bag; snip 1 inch from corner of bag). Pipe donuts into prepared pan, filling each cavity about halfway. Bake in preheated oven until a wooden pick inserted in centre comes out clean, about 10 minutes. Finally, prepare the topping: Stir together sugar, cinnamon and nutmeg in a small bowl. Toss warm doughnuts in topping and serve warm!',
     time: '21-30 mins',
@@ -196,7 +196,7 @@ export const data = [
       'https://res.cloudinary.com/dghgcknlo/image/upload/v1660230056/leo-roza-zNqArwc7Hh4-unsplash_tfzuog.jpg',
   },
   {
-    title: 'Healthy Fish Fingers with Guacamole',
+    title: 'Fish Fingers and Guac',
     author: 'Liz K',
     description: 'Preheat the oven to 200°C conventional (180°C fan-forced) and line a biscuit tray with baking paper. To make the crumb mix, combine the breadcrumbs with the lemon zest and salt and place in a shallow bowl. Slice the salmon fillets into fingers and dip these first in the beaten egg and then in the crumb mixture, turning so each side is well coated. Place on the prepared baking tray and once all the fish is crumbed, lightly spray with canola oil and place in the oven for about 10 minutes. Meanwhile to make the guacamole, crush the avocado into a bowl and mix with remaining ingredients. Season to taste',
     time: '41-50 mins',
@@ -228,7 +228,7 @@ export const data = [
       'https://res.cloudinary.com/dghgcknlo/image/upload/v1660230825/mary-andrusenko-pGARaa8KzDI-unsplash_mzgtbi.jpg',
   },
   {
-    title: 'Polenta Chips with Tomato Sauce',
+    title: 'Chips with Tomato Sauce',
     author: 'Emma Wilkinson',
     description: 'To make the chips: Line a shallow baking tray with paper and set aside. 2. Bring the stock and water to the boil and then gradually whisk in the polenta in a thick and steady stream. Remove from heat and add parmesan. Whisk for a couple of minutes or until smooth. 3. Pour the polenta and smooth with the back of a wooden spoon. Place this in the fridge for at least an hour to set. Slice into chips and spray lightly with olive oil. Heat the grill to high and cook the chips for a few minutes each side until golden. To make the sauce: Heat the olive oil in a medium saucepan over medium heat. Add garlic and cook, stirring, for 1 minute. Add tomatoes, paprika and chilli flakes, lower heat and let the sauce simmer for about 15 minutes or until thickened.',
     time: '31-40 mins',
