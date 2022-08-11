@@ -1,3 +1,24 @@
+// ./libs/recipeData.js 
+// NUTRITION CATEGORY
+    // 'Vegetarian',
+    // 'Vegan',
+    // 'Pescetarian',
+    // 'Keto',
+    // 'Gluten-free',
+    // 'Low-sugar',
+    // 'Dairy-free',
+    // 'Low-sodium',
+    // 'Low-carb'
+
+// FOOD TYPE 
+    // "Pizza"
+    // "Burgers"
+    // "Chinese" 
+    // "Fried"
+    // "BBQ"
+    // "Desserts"
+    // "Drinks"
+
 export const data = [
   {
     title: 'Keto Big Mac Bowl',
