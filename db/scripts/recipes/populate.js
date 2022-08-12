@@ -1,7 +1,7 @@
 import { query } from "../../index.js";
 import { data } from "../../../libs/recipeData.js";
 
-    
+   
 async function populateRecipesTable() {
   for (let i = 0; i < data.length; i++) {
     const res = await query(
