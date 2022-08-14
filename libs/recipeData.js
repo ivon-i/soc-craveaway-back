@@ -149,7 +149,7 @@ export const data = [
   },
   {
     title: 'Salmon Burger',
-    author: 'Rebecca Tufnell',
+    author: 'Rebecca Tuffnell',
     description: ' Oily fish makes a heart-healthy alternative to red meat burgers. This recipe would also be delicious with tuna steaks. Tip the salmon into a food processor with the paste, ginger, soy and chopped coriander. Pulse until roughly minced. Tip out the mix and shape into 4 burgers. Heat the oil in a non-stick frying pan, then fry the burgers for 4-5 mins on each side, turning until crisp and cooked through. Meanwhile, use a swivel peeler to peel strips of carrot and cucumber into a bowl. Toss with the vinegar and sugar until the sugar has dissolved, then toss through the coriander leaves. Divide the salad between 4 plates. Serve with the burgers and rice.',
     time: '31-40 mins',
     cost: '£26-35',
