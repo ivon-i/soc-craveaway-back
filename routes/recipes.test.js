@@ -1,19 +1,7 @@
 import request from 'supertest';
 import supertest from 'supertest';
 import { test, expect } from '@jest/globals';
-import { v2 as cloudinary } from 'cloudinary';
 import app from '../app.js';
-import { pool } from '../db/index';
-
-afterAll(() => {
-  pool.end();
-});
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 
 // GET BY ID
 describe('GET recipe by id', () => {
@@ -38,12 +26,8 @@ describe('GET all recipes', () => {
 });
 
 // POST
-
 describe('POST recipe', () => {
   test('Checks if a recipe is posted', async function () {
-    // const response = await supertest(app)
-    //   .post('/recipes/create')
-    // const projects = await request(app).get('/recipes');
     const response = await request(app)
       .post('/recipes/create')
       .expect(200)
@@ -63,8 +47,6 @@ describe('POST recipe', () => {
         time: '21-30 mins',
         title: 'RUDE',
       })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/);
     const actual = response.body;
     const expected = {
       success: true,
@@ -91,113 +73,151 @@ describe('POST recipe', () => {
   });
 });
 
+
+
 // PATCH
-// For PUT, PATCH and DELETE - update route (id) depending on table status
-// describe('GET all tickets', () => {
-// test('returns all tickets', async () => {
-//     const res = await request(app).get('/tickets');
-//     expect(res.statusCode).toEqual(200);
-//     expect(res.body).toEqual({ success: true, payload: expect.any(Object) });
-// });
-// });
+describe('PATCH tickets/X', () => {
+test('Checks if the rating value is updated', async function () {
+    const response = await supertest(app)
+    .patch('/recipes/1')
+    .expect(200)
+    .send({
+        rating: 5,
+    });
+    const actual = response.body;
+    const expected = {
+      success: true,
+      payload: [
+        {
+          recipe_id: expect.any(Number),
+          author: expect.any(String),
+          cloudinary_id: expect.any(String),
+          cost: expect.any(String),
+          description: expect.any(String),
+          image: expect.any(String),
+          ingredients: expect.any(String),
+          nutrition: expect.any(String),
+          rating: 5,
+          rating_entries: expect.any(Number),
+          serves: expect.any(String),
+          time: expect.any(String),
+          title: expect.any(String),
+          image_url: expect.any(String),
+        },
+      ],
+    };
+    expect(actual).toEqual(expected);
+});
+});
 
-// describe('POST ticket', () => {
-// test('Checks if a ticket is posted', async function () {
-//     const response = await supertest(app).post('/tickets').expect(200).send({
-//     name: 'Joe Bloggs',
-//     roomnumber: '1',
-//     message: 'Help me writing a test',
-//     keywords: 'jest, supertest',
-//     status: 'waiting',
-//     });
-//     const actual = response.body;
-//     const expected = {
-//     success: true,
-//     payload: [
-//         {
-//         name: 'Joe Bloggs',
-//         roomnumber: '1',
-//         message: 'Help me writing a test',
-//         keywords: 'jest, supertest',
-//         status: 'waiting',
-//         ticket_id: expect.any(Number),
-//         },
-//     ],
-//     };
-//     expect(actual).toEqual(expected);
-// });
-// });
 
-// describe('PUT tickets/X', () => {
-// test('Checks if the ticket is updated', async function () {
-//     const response = await supertest(app).put('/tickets/59').expect(200).send({
-//     name: 'Joe Bloggs',
-//     roomnumber: '1',
-//     message: 'Help me writing a test',
-//     keywords: 'jest, supertest',
-//     status: 'waiting',
-//     });
-//     const actual = response.body;
-//     const expected = {
-//     success: true,
-//     payload: [
-//         {
-//         name: 'Joe Bloggs',
-//         roomnumber: '1',
-//         message: 'Help me writing a test',
-//         keywords: 'jest, supertest',
-//         status: 'waiting',
-//         ticket_id: expect.any(Number),
-//         },
-//     ],
-//     };
-//     expect(actual).toEqual(expected);
-// });
-// });
+// CODE FROM WEEK 9 PROJECT
+    // For PUT, PATCH and DELETE - update route (id) depending on table status
+    // describe('GET all tickets', () => {
+    // test('returns all tickets', async () => {
+    //     const res = await request(app).get('/tickets');
+    //     expect(res.statusCode).toEqual(200);
+    //     expect(res.body).toEqual({ success: true, payload: expect.any(Object) });
+    // });
+    // });
 
-// describe('PATCH tickets/X', () => {
-// test('Checks if the status value is updated', async function () {
-//     const response = await supertest(app)
-//     .patch('/tickets/59')
-//     .expect(200)
-//     .send({
-//         status: 'in progress',
-//     });
-//     const actual = response.body;
-//     const expected = {
-//     success: true,
-//     payload: [
-//         {
-//         name: 'Joe Bloggs',
-//         roomnumber: '1',
-//         message: 'Help me writing a test',
-//         keywords: 'jest, supertest',
-//         status: 'in progress',
-//         ticket_id: expect.any(Number),
-//         },
-//     ],
-//     };
-//     expect(actual).toEqual(expected);
-// });
-// });
+    // describe('POST ticket', () => {
+    // test('Checks if a ticket is posted', async function () {
+    //     const response = await supertest(app).post('/tickets').expect(200).send({
+    //     name: 'Joe Bloggs',
+    //     roomnumber: '1',
+    //     message: 'Help me writing a test',
+    //     keywords: 'jest, supertest',
+    //     status: 'waiting',
+    //     });
+    //     const actual = response.body;
+    //     const expected = {
+    //     success: true,
+    //     payload: [
+    //         {
+    //         name: 'Joe Bloggs',
+    //         roomnumber: '1',
+    //         message: 'Help me writing a test',
+    //         keywords: 'jest, supertest',
+    //         status: 'waiting',
+    //         ticket_id: expect.any(Number),
+    //         },
+    //     ],
+    //     };
+    //     expect(actual).toEqual(expected);
+    // });
+    // });
 
-// describe('DELETE tickets/X', () => {
-// test('Checks if the ticket is deleted', async function () {
-//     const response = await supertest(app).delete('/tickets/59').expect(200);
-//     const actual = response.body;
-//     const expected = {
-//     success: true,
-//     payload: [
-//         {
-//         name: 'Joe Bloggs',
-//         roomnumber: '1',
-//         message: 'Help me writing a test',
-//         keywords: 'jest, supertest',
-//         status: 'in progress',
-//         ticket_id: expect.any(Number),
-//         },
-//     ],
-//     };
-//     expect(actual).toEqual(expected);
-// });
-// });
+    // describe('PUT tickets/X', () => {
+    // test('Checks if the ticket is updated', async function () {
+    //     const response = await supertest(app).put('/tickets/59').expect(200).send({
+    //     name: 'Joe Bloggs',
+    //     roomnumber: '1',
+    //     message: 'Help me writing a test',
+    //     keywords: 'jest, supertest',
+    //     status: 'waiting',
+    //     });
+    //     const actual = response.body;
+    //     const expected = {
+    //     success: true,
+    //     payload: [
+    //         {
+    //         name: 'Joe Bloggs',
+    //         roomnumber: '1',
+    //         message: 'Help me writing a test',
+    //         keywords: 'jest, supertest',
+    //         status: 'waiting',
+    //         ticket_id: expect.any(Number),
+    //         },
+    //     ],
+    //     };
+    //     expect(actual).toEqual(expected);
+    // });
+    // });
+
+    // describe('PATCH tickets/X', () => {
+    // test('Checks if the status value is updated', async function () {
+    //     const response = await supertest(app)
+    //     .patch('/tickets/59')
+    //     .expect(200)
+    //     .send({
+    //         status: 'in progress',
+    //     });
+    //     const actual = response.body;
+    //     const expected = {
+    //     success: true,
+    //     payload: [
+    //         {
+    //         name: 'Joe Bloggs',
+    //         roomnumber: '1',
+    //         message: 'Help me writing a test',
+    //         keywords: 'jest, supertest',
+    //         status: 'in progress',
+    //         ticket_id: expect.any(Number),
+    //         },
+    //     ],
+    //     };
+    //     expect(actual).toEqual(expected);
+    // });
+    // });
+
+    // describe('DELETE tickets/X', () => {
+    // test('Checks if the ticket is deleted', async function () {
+    //     const response = await supertest(app).delete('/tickets/59').expect(200);
+    //     const actual = response.body;
+    //     const expected = {
+    //     success: true,
+    //     payload: [
+    //         {
+    //         name: 'Joe Bloggs',
+    //         roomnumber: '1',
+    //         message: 'Help me writing a test',
+    //         keywords: 'jest, supertest',
+    //         status: 'in progress',
+    //         ticket_id: expect.any(Number),
+    //         },
+    //     ],
+    //     };
+    //     expect(actual).toEqual(expected);
+    // });
+    // });
