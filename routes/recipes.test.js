@@ -1,7 +1,14 @@
 import request from 'supertest';
 import supertest from 'supertest';
 import { test, expect } from '@jest/globals';
+import { v2 as cloudinary } from 'cloudinary';
 import app from '../app.js';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 // GET BY ID 
 describe('GET recipe by id', () => {
@@ -22,9 +29,14 @@ describe('GET all recipes', () => {
 });
 
 // POST 
+
+
 describe('POST recipe', () => {
     test('Checks if a recipe is posted', async function () {
-        const response = await supertest(app)
+        // const response = await supertest(app)
+        //   .post('/recipes/create')
+        const projects = await request(app).get('/recipes/create');
+        const response = await request(app)
           .post('/recipes/create')
           .expect(200)
           .send({
@@ -41,11 +53,13 @@ describe('POST recipe', () => {
             rating_entries: 0,
             cloudinary_id: 'Test',
             image_url: 'Test',
-          });
+          })
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/);
         const actual = response.body;
         const expected = {
           success: true,
-          payload: [
+          data: [
             {
               recipe_id: expect.any(Number),
               title: 'Test',
