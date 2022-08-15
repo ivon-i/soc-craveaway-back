@@ -62,8 +62,8 @@ recRouter.post('/create', async (req, res) => {
     !newRecipe.time ||
     !newRecipe.nutrition ||
     !newRecipe.ingredients ||
-    !newRecipe.serves ||
-    !newRecipe.imagestring
+    !newRecipe.serves
+    // !newRecipe.image_url
   ) {
     res.json({ sucess: false, reason: 'incorrect data input' });
   } else {
