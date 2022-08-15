@@ -24,6 +24,7 @@ export async function postFavRecipe(newRecipe) {
     rating_entries,
     shoppingList,
     userName,
+    image_url
   } = newRecipe;
 
   // const data = await query(
@@ -36,7 +37,7 @@ export async function postFavRecipe(newRecipe) {
   favs = true;
   console.log("not posted")
   } else {
-   const newFav = await query( `INSERT INTO favourites (recipe_id, title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, shoppingList, userName) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;`,
+   const newFav = await query( `INSERT INTO favourites (recipe_id, title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, shoppingList, userName, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *;`,
       [
         recipe_id,
         title,
@@ -52,6 +53,7 @@ export async function postFavRecipe(newRecipe) {
         0,
         shoppingList,
         userName,
+        image_url
       ])
       favs = newFav.rows;
   }
