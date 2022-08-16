@@ -7,7 +7,7 @@ export async function getFav(name) {
   return data.rows;
 }
 
-//posting favourited recipe into Fav table
+//posting favourited recipe into the Fav table
 export async function postFavRecipe(newRecipe) {
   const {
     recipe_id,
