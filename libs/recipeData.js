@@ -72,7 +72,7 @@ export const data = [
       'Chicken wings 2 kg, Garlic powder 2 tsp,  Franks Original Hot Sauce 1 cup, Black pepper 1/2 tsp, Baking powder 1 tbsp',
     image: 'TEXT',
     serves: '2',
-    rating: 0,
+    rating: 4,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -92,7 +92,7 @@ export const data = [
       'Yellow cornmeal 1 tsp, Whole-wheat pizza dough 12 ounces, Marinara sauce 1 cup,  Part-skim Mozzarella cheese 1 ounce, Olive oil 1 tsp',
     image: 'TEXT',
     serves: '2',
-    rating: 0,
+    rating: 3,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -111,7 +111,7 @@ export const data = [
       'Apple cider 1 cup, Spelt flour 2 cups,  Baking powder 1 tsp, Cinnamon 1 tsp',
     image: 'TEXT',
     serves: '4+',
-    rating: 0,
+    rating: 4,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -130,7 +130,7 @@ export const data = [
       'Vegan burgers 8, Vegan cheese 4 slices, Large burger buns 4, Large gherkins 2, Diced white onion 2 tablespoons, Half a baby gem Lettuce',
     image: 'TEXT',
     serves: '4',
-    rating: 0,
+    rating: 5,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -149,7 +149,7 @@ export const data = [
       'Medium sweet potato 1 , Canola oil 1 tbsp, Sea salt 1 tsp, Pepper, Sugar 1 tsp',
     image: 'TEXT',
     serves: '3',
-    rating: 0,
+    rating: 3,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -168,7 +168,7 @@ export const data = [
       ' Quorn Mince 300g, Red Pepper 1, Onion 1, Red Chillies 2, Garlic 2 Cloves',
     image: 'TEXT',
     serves: '2',
-    rating: 0,
+    rating: 5,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -187,7 +187,7 @@ export const data = [
       '4 salmon fillets, Thai red curry paste 2 tbsp, Wholemeal bun, Sour cream, Soy sauce 1 tsp',
     image: 'TEXT',
     serves: '2',
-    rating: 0,
+    rating: 4,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -206,7 +206,7 @@ export const data = [
       'Cauliflower 340g, Light Mozzarella (grated) 1/2 cup, Egg (lightly beaten)  1, Dried Oregano 1/2 tsp, Dried Basil leaves 1/2 tsp, Garlic powder 1 tsp',
     image: 'TEXT',
     serves: '2',
-    rating: 0,
+    rating: 3,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -225,7 +225,7 @@ export const data = [
       'Quinoa 1/2 cup, Massel Vegetable Liquid Stock 1 cup, Chicken Tenderloins 500 g, Plain Flour 3 tbsp, Onion powder 1 tsp, Large egg 1',
     image: 'TEXT',
     serves: '4+',
-    rating: 0,
+    rating: 5,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -244,7 +244,7 @@ export const data = [
       'Wholemeal breadcrumbs 1 cup, Zest of one Lemon, A pinch of salt, Egg (lightly beaten) 1, Salmon fillets (about 200g each) 2 , Canola oil spray, Ripe Avocado 1, Cooked Corn Kernels 1/2 cup, Red Capsicum roughly chopped 1/2 cup , Cherry Tomatoes halved 1/4 cup, Juice of one Lemon, Olive oil 2 tsp',
     image: 'TEXT',
     serves: '3',
-    rating: 0,
+    rating: 3,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -263,7 +263,7 @@ export const data = [
       'Pitas or Lebanese bread 2, Pizza Sauce 1/2 cup, Cherry tomatoes 10, Bambini Bocconcini 8,Red capsicum sliced 1/4 cup, Mushrooms sliced 1 cup, Shallots sliced 1/2 cup, Large fresh Basil leaves chopped 2 tbsp',
     image: 'TEXT',
     serves: '4+',
-    rating: 0,
+    rating: 4,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
@@ -282,7 +282,7 @@ export const data = [
       'Low-salt Chicken Stock 2 cups, Boiling water 2 cups, Instant Polenta 250g, Parmesan 1/2 cup, Olive oil spray',
     image: 'TEXT',
     serves: '3',
-    rating: 0,
+    rating: 3,
     rating_entries: 0,
     cloudinary_id: 'qwerty',
     image_url:
