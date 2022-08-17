@@ -39,9 +39,10 @@ export async function createNewRecipe(newRecipe, imageData) {
     ingredients,
     image,
     serves,
+    categories
   } = newRecipe;
   const data = await query(
-    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, cloudinary_id, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`,
+    `INSERT INTO recipes (title, author, description, time, cost, nutrition, ingredients, image, serves, rating, rating_entries, cloudinary_id, image_url, categories) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;`,
     [
       title,
       author,
@@ -56,6 +57,7 @@ export async function createNewRecipe(newRecipe, imageData) {
       0,
       imageData.public_id,
       imageData.secure_url,
+      categories
     ]
   );
   return data.rows;
