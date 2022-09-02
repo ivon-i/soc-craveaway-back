@@ -1,6 +1,6 @@
 # CRAVEAWAY
 
-An app created by Retro Boomin' for our final 4-week project at [School of Code's](https://www.schoolofcode.co.uk/) Bootcamp (cohort 12). This is our back-end repository. You can check out our front-end [here](https://github.com/SchoolOfCode/final-project_front-end-retro-boomin).
+An app created by Retro Boomin' for our final 4-week project at [School of Code's](https://www.schoolofcode.co.uk/) Bootcamp (cohort 12). This is our back-end repository. You can check out our front-end [here](https://github.com/ivon-i/soc-craveaway-front).
 
 *To view our deployed app, follow [this](https://craveaway.vercel.app/).*
 
